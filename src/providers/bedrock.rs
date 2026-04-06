@@ -610,7 +610,7 @@ impl BedrockProvider {
                             role: "assistant".to_string(),
                             content: blocks,
                         });
-                    } else {
+                    } else if !msg.content.trim().is_empty() {
                         converse_messages.push(ConverseMessage {
                             role: "assistant".to_string(),
                             content: vec![ContentBlock::Text(TextBlock {
@@ -800,7 +800,7 @@ impl BedrockProvider {
             }));
         }
 
-        if blocks.is_empty() {
+        if blocks.is_empty() && !content.trim().is_empty() {
             blocks.push(ContentBlock::Text(TextBlock {
                 text: content.to_string(),
             }));
